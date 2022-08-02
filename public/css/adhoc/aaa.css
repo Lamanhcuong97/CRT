@@ -1,0 +1,80 @@
+body{
+    font-family: Phetsarath OT;
+}
+
+body p{
+    font-size: 16px;
+    text-align: justify;
+}
+
+.nav a{       
+            font-size: 1.3em !important;
+        }
+        
+.navbar-brand {
+  padding: 0px;
+}
+
+
+.navbar-brand>img {
+  height: 100%;
+  padding-left: 5px; 
+  padding-right: 10px;
+  width: auto;
+}
+
+.navbar-custom {
+    background-color: steelblue;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+
+.navbar-custom .navbar-nav > .active > a {
+    color: #ffffff;
+    background-color:transparent;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open >a {
+    text-decoration: none;
+    background-color: steelblue;
+}
+
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+    background-color:#eeeeee;
+}
+.navbar-custom .icon-bar {
+    background-color:steelblue;
+}
+
+.panel-title a{
+    font-size: 1.3em !important;
+}
+
+.jumbotron{
+background-color: whitesmoke;
+
+}
+
+
+
+ul.enlarge{
+list-style-type:none; /*remove the bullet point*/
+}
+ul.enlarge li{
+display:inline-block; /*places the images in a line*/
+position: relative; /*allows precise positioning of the popup image when used with position:absolute - see support section */
+z-index: 0; /*resets the stack order of the list items - we'll increase in step 4. See support section for more info*/
+margin:10px 40px 0 20px; /*space between the images*/
+}
+
