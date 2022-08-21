@@ -14,5 +14,5 @@ use Illuminate\Foundation\Inspiring;
 */
 
 Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
+    dispatch(new \App\Jobs\ImportCtrPerson(1, 1));
 })->describe('Display an inspiring quote');

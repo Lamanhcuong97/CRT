@@ -90,41 +90,7 @@ class CtrController extends Controller
                 'destination_fi' => 'required',
                 'currency' => 'required',
       ]);
-            
-
-              if(!empty($data) && $data->count()){  
-
-                
-                  foreach ($data as $key => $value) {  
-                      $insert[] = [
-                        // 'idctr_upload' => Ctr_upload::where(id)  //h neo dhai hai mun deung ao id sout thai khong table ctr_upload dai
-                      //  'idctr_upload' => Ctr_upload::orderBy('ctr_id', 'desc')
-                      // 'idreporter' => Auth::user()->idusr,
-                      // $idbank = Auth::user()->idusr;
-                      'idreporter' => Auth::user()->reporter_idreporter,
-
-                      'name' => $value->name,
-                      'surname' => $value->surname,
-                      'nationality' => $value->nationality,
-                      'birthday' => $value->birthday,
-                      'occupation' => $value->occupation,
-                      'phone_number' => $value->phone_number,
-                      'identity_card' => $value->identity_card,
-                      'nominee' => $value->nominee,
-                      'owner' => $value->owner,
-                      'transaction_type' => $value->transaction_type,
-                      'transaction_date' => $value->transaction_date,
-                      'transaction_amount' => $value->transaction_amount,
-                      'receiver_name' => $value->receiver_name,
-                      'destination_fi' => $value->destination_fi,
-                      'currency' => $value->currency,
-                    ];  
-                  }  
-                  if(!empty($insert)){  
-                      DB::table('ctr_person')->insert($insert);  
-                      // dd('Insert Record successfully.');  
-                  }  
-              }  
+             
           }  
           // return back();  
           

@@ -4,19 +4,19 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
+class ComposerStaticInit65d5906a029fa3c5a229100318940730
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
@@ -88,7 +88,6 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         ),
         'L' => 
         array (
-            'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
         ),
@@ -260,10 +259,6 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
-        'League\\MimeTypeDetection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
-        ),
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
@@ -393,17 +388,6 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
-        'App\\Http\\Controllers\\Boys\\AllInboxController' => __DIR__ . '/../..' . '/app/Http/Controllers/Boys/AllInboxController.php',
-        'App\\Http\\Controllers\\Boys\\AllSentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Boys/AllSentController.php',
-        'App\\Http\\Controllers\\Boys\\DownloadController' => __DIR__ . '/../..' . '/app/Http/Controllers/Boys/DownloadController.php',
-        'App\\Http\\Controllers\\Boys\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Boys/HomeController.php',
-        'App\\Http\\Controllers\\Boys\\ReplyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Boys/ReplyController.php',
-        'App\\Http\\Controllers\\Boys\\ReportListController' => __DIR__ . '/../..' . '/app/Http/Controllers/Boys/ReportListController.php',
-        'App\\Http\\Controllers\\Boys\\SendingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Boys/SendingController.php',
-        'App\\Http\\Controllers\\Boys\\Users\\AllInboxController' => __DIR__ . '/../..' . '/app/Http/Controllers/Boys/Users/AllInboxController.php',
-        'App\\Http\\Controllers\\Boys\\Users\\AllSentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Boys/Users/AllSentController.php',
-        'App\\Http\\Controllers\\Boys\\Users\\ReplyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Boys/Users/ReplyController.php',
-        'App\\Http\\Controllers\\CbrController' => __DIR__ . '/../..' . '/app/Http/Controllers/CbrController.php',
         'App\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CtrController' => __DIR__ . '/../..' . '/app/Http/Controllers/CtrController.php',
@@ -426,7 +410,10 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Imports\\CtrLegalImport' => __DIR__ . '/../..' . '/app/Imports/CtrLegalImport.php',
         'App\\Imports\\CtrPersonImport' => __DIR__ . '/../..' . '/app/Imports/CtrPersonImport.php',
+        'App\\Jobs\\ImportCtrLegal' => __DIR__ . '/../..' . '/app/Jobs/ImportCtrLegal.php',
+        'App\\Jobs\\ImportCtrPerson' => __DIR__ . '/../..' . '/app/Jobs/ImportCtrPerson.php',
         'App\\Nationality' => __DIR__ . '/../..' . '/app/Nationality.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -499,8 +486,16 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'CreateArticle2Table' => __DIR__ . '/../..' . '/database/migrations/2017_10_31_015727_create_article2_table.php',
         'CreateArticlesTalbe' => __DIR__ . '/../..' . '/database/migrations/2017_10_30_024307_create_articles_talbe.php',
+        'CreateCtrLegalsTable' => __DIR__ . '/../..' . '/database/migrations/2022_08_19_043638_create_ctr_legals_table.php',
+        'CreateCtrPersonsTable' => __DIR__ . '/../..' . '/database/migrations/2022_08_19_043626_create_ctr_persons_table.php',
+        'CreateCtrUploadsTable' => __DIR__ . '/../..' . '/database/migrations/2022_08_19_043612_create_ctr_uploads_table.php',
+        'CreateFailedJobsTable' => __DIR__ . '/../..' . '/database/migrations/2022_08_16_155542_create_failed_jobs_table.php',
+        'CreateJobsTable' => __DIR__ . '/../..' . '/database/migrations/2022_08_16_155529_create_jobs_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateReporterTypesTable' => __DIR__ . '/../..' . '/database/migrations/2022_08_19_043248_create_reporter_types_table.php',
+        'CreateReportersTable' => __DIR__ . '/../..' . '/database/migrations/2022_08_19_041804_create_reporters_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
+        'CreateUsrsTable' => __DIR__ . '/../..' . '/database/migrations/2022_08_19_040929_create_usrs_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/DayOfMonthField.php',
@@ -1898,7 +1893,6 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         'League\\Flysystem\\ConfigAwareTrait' => __DIR__ . '/..' . '/league/flysystem/src/ConfigAwareTrait.php',
         'League\\Flysystem\\ConnectionErrorException' => __DIR__ . '/..' . '/league/flysystem/src/ConnectionErrorException.php',
         'League\\Flysystem\\ConnectionRuntimeException' => __DIR__ . '/..' . '/league/flysystem/src/ConnectionRuntimeException.php',
-        'League\\Flysystem\\CorruptedPathDetected' => __DIR__ . '/..' . '/league/flysystem/src/CorruptedPathDetected.php',
         'League\\Flysystem\\Directory' => __DIR__ . '/..' . '/league/flysystem/src/Directory.php',
         'League\\Flysystem\\Exception' => __DIR__ . '/..' . '/league/flysystem/src/Exception.php',
         'League\\Flysystem\\File' => __DIR__ . '/..' . '/league/flysystem/src/File.php',
@@ -1931,13 +1925,6 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
-        'League\\MimeTypeDetection\\EmptyExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/EmptyExtensionToMimeTypeMap.php',
-        'League\\MimeTypeDetection\\ExtensionMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionMimeTypeDetector.php',
-        'League\\MimeTypeDetection\\ExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionToMimeTypeMap.php',
-        'League\\MimeTypeDetection\\FinfoMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/FinfoMimeTypeDetector.php',
-        'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
-        'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
-        'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
         'Maatwebsite\\Excel\\Classes\\Cache' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/Cache.php',
         'Maatwebsite\\Excel\\Classes\\FormatIdentifier' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/FormatIdentifier.php',
         'Maatwebsite\\Excel\\Classes\\LaravelExcelWorksheet' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/LaravelExcelWorksheet.php',
@@ -4152,7 +4139,6 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         'UpdateHelper\\UpdateHelperInterface' => __DIR__ . '/..' . '/kylekatarnls/update-helper/src/UpdateHelper/UpdateHelperInterface.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
-        'Webmozart\\Assert\\InvalidArgumentException' => __DIR__ . '/..' . '/webmozart/assert/src/InvalidArgumentException.php',
         'Webmozart\\Assert\\Mixin' => __DIR__ . '/..' . '/webmozart/assert/src/Mixin.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'fpdi_pdf_parser' => __DIR__ . '/..' . '/setasign/fpdi/fpdi_pdf_parser.php',
@@ -4177,11 +4163,11 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Deprecated' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Deprecated.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Example' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Example.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Factory\\StaticMethod' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Factory/StaticMethod.php',
+        'phpDocumentor\\Reflection\\DocBlock\\Tags\\Factory\\Strategy' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Factory/Strategy.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Formatter' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Formatter.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Formatter\\AlignFormatter' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Formatter/AlignFormatter.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Formatter\\PassthroughFormatter' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Formatter/PassthroughFormatter.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Generic' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Generic.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tags\\InvalidTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/InvalidTag.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Link' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Link.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Method' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Method.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Param' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Param.php',
@@ -4201,50 +4187,26 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Var_' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Var_.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Version' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Version.php',
         'phpDocumentor\\Reflection\\Element' => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src/Element.php',
-        'phpDocumentor\\Reflection\\Exception\\PcreException' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/Exception/PcreException.php',
         'phpDocumentor\\Reflection\\File' => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src/File.php',
         'phpDocumentor\\Reflection\\Fqsen' => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src/Fqsen.php',
         'phpDocumentor\\Reflection\\FqsenResolver' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/FqsenResolver.php',
         'phpDocumentor\\Reflection\\Location' => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src/Location.php',
         'phpDocumentor\\Reflection\\Project' => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src/Project.php',
         'phpDocumentor\\Reflection\\ProjectFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src/ProjectFactory.php',
-        'phpDocumentor\\Reflection\\PseudoType' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoType.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\CallableString' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/CallableString.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\False_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/False_.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\HtmlEscapedString' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/HtmlEscapedString.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\IntegerRange' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/IntegerRange.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\List_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/List_.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\LiteralString' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/LiteralString.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\LowercaseString' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/LowercaseString.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\NegativeInteger' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/NegativeInteger.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\NonEmptyLowercaseString' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/NonEmptyLowercaseString.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\NonEmptyString' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/NonEmptyString.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\NumericString' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/NumericString.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\Numeric_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/Numeric_.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\PositiveInteger' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/PositiveInteger.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\TraitString' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/TraitString.php',
-        'phpDocumentor\\Reflection\\PseudoTypes\\True_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/PseudoTypes/True_.php',
         'phpDocumentor\\Reflection\\Type' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Type.php',
         'phpDocumentor\\Reflection\\TypeResolver' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/TypeResolver.php',
         'phpDocumentor\\Reflection\\Types\\AbstractList' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/AbstractList.php',
-        'phpDocumentor\\Reflection\\Types\\AggregatedType' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/AggregatedType.php',
-        'phpDocumentor\\Reflection\\Types\\ArrayKey' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/ArrayKey.php',
         'phpDocumentor\\Reflection\\Types\\Array_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Array_.php',
         'phpDocumentor\\Reflection\\Types\\Boolean' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Boolean.php',
         'phpDocumentor\\Reflection\\Types\\Callable_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Callable_.php',
-        'phpDocumentor\\Reflection\\Types\\ClassString' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/ClassString.php',
         'phpDocumentor\\Reflection\\Types\\Collection' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Collection.php',
         'phpDocumentor\\Reflection\\Types\\Compound' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Compound.php',
         'phpDocumentor\\Reflection\\Types\\Context' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Context.php',
         'phpDocumentor\\Reflection\\Types\\ContextFactory' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/ContextFactory.php',
-        'phpDocumentor\\Reflection\\Types\\Expression' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Expression.php',
         'phpDocumentor\\Reflection\\Types\\Float_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Float_.php',
         'phpDocumentor\\Reflection\\Types\\Integer' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Integer.php',
-        'phpDocumentor\\Reflection\\Types\\InterfaceString' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/InterfaceString.php',
-        'phpDocumentor\\Reflection\\Types\\Intersection' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Intersection.php',
         'phpDocumentor\\Reflection\\Types\\Iterable_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Iterable_.php',
         'phpDocumentor\\Reflection\\Types\\Mixed_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Mixed_.php',
-        'phpDocumentor\\Reflection\\Types\\Never_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Never_.php',
         'phpDocumentor\\Reflection\\Types\\Null_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Null_.php',
         'phpDocumentor\\Reflection\\Types\\Nullable' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Nullable.php',
         'phpDocumentor\\Reflection\\Types\\Object_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Object_.php',
@@ -4256,17 +4218,16 @@ class ComposerStaticInit264a35a024d1dd9df879014d9b3680a2
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
-        'phpDocumentor\\Reflection\\Utils' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/Utils.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit264a35a024d1dd9df879014d9b3680a2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit264a35a024d1dd9df879014d9b3680a2::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit264a35a024d1dd9df879014d9b3680a2::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit264a35a024d1dd9df879014d9b3680a2::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit264a35a024d1dd9df879014d9b3680a2::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit65d5906a029fa3c5a229100318940730::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit65d5906a029fa3c5a229100318940730::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit65d5906a029fa3c5a229100318940730::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit65d5906a029fa3c5a229100318940730::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit65d5906a029fa3c5a229100318940730::$classMap;
 
         }, null, ClassLoader::class);
     }

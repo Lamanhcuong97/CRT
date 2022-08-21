@@ -65,6 +65,8 @@ Route::get('/clear/all/', function(){
     Artisan::call('config:cache');
     return "CACHE CLEARED, VIEW CLEARED, CACHE CONFIGED.";
   });
+
+  Route::get('/ctrviews', 'CtrviewsController@replyviews');
 //   Route::get('/admin/user', 'AdminController@admin_user');
 //   Route::post('/admin/user/add', 'AdminController@admin_user_add');
 
@@ -87,7 +89,7 @@ Route::middleware('admin:1,2,3,4','auth')->group(function () {
     Route::post('gpdf', 'PdfControllers@pdfgenerate');
     Route::post('strpdf', 'PdfControllers@strpdfgenerate');
 	// CTR user sent form UserPage1
-    Route::get('/ctrviews', 'CtrviewsController@replyviews');
+    // Route::get('/ctrviews', 'CtrviewsController@replyviews');
     // CTR admin
     Route::post('ctrstore', 'CtrController@save');
     
