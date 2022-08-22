@@ -10,6 +10,6 @@ class Ctr_person extends Model
     protected $table = 'ctr_person';
     public $timestamps = false;
   
-    // protected $fillable = ['ctr_id','path_file','upload_date','idusr','title'];
+    protected $fillable = ['name', 'surname', 'nationality', 'birthday', 'occupation', 'phone_number', 'identity_card', 'nominee', 'owner', 'transaction_type', 'transaction_date', 'transaction_amount', 'receiver_name', 'destination_fi', 'currency'];
     // protected $dates = ['upload_date'];
 }

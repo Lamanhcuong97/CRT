@@ -3,37 +3,58 @@
 namespace App\Imports;
 
 use App\Ctr_person;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Illuminate\Support\Facades\Hash;
 
-class CtrPersonImport implements ToModel
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use \PhpOffice\PhpSpreadsheet\Shared\Date;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+class CtrPersonImport implements ToCollection, WithChunkReading, WithHeadingRow, ShouldQueue
 {
+    private $user;
+    public function __construct($user)
+    {
+        $this->user = $user;
+    }
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    public function model(array $row)
+    public function collection(Collection $rows)
     {
-        return new Ctr_person([
-            // 'id'     => $row[0],
-            // 'idreporter'    => $row[2],
-            // 'password' => Hash::make($row[3])
-            'name' => $row[1],
-            'surname' => $row[2],
-            'nationality' => $row[3],
-            'birthday' => $row[4],
-            'occupation' => $row[5],
-            'phone_number' => $row[6],
-            'identity_card' => $row[7],
-            'nominee' => $row[8],
-            'owner' => $row[9],
-            'transaction_type' => $row[10],
-            'transaction_date' => $row[11],
-            'transaction_amount' => $row[12],
-            // 'currency' => $row[15],
-            'receiver_name' => $row[13],
-            'destination_fi' => $row[14],
-        ]);
+
+        foreach ($rows as $row) {
+            return new Ctr_person([
+                'idreporter' => $this->user->reporter_idreporter,
+                'name' => $row['name'],
+                'surname' => $row['surname'],
+                'nationality' => $row['nationality'],
+                'birthday' => Date::excelToDateTimeObject($row['birthday']),
+                'occupation' => $row['occupation'],
+                'phone_number' => $row['phone_number'],
+                'identity_card' => $row['identity_card'],
+                'nominee' => $row['nominee'],
+                'owner' => $row['owner'],
+                'transaction_type' => $row['transaction_type'],
+                'transaction_date' => Date::excelToDateTimeObject($row['transaction_date']),
+                'transaction_amount' => $row['transaction_amount'],
+                'receiver_name' => $row['receiver_name'],
+                'destination_fi' => $row['destination_fi'],
+                'currency' => $row['currency'],
+            ]);
+        }
+    }
+
+    public function chunkSize(): int
+    {
+        return 200;
+    }
+
+    public function headingRow(): int
+    {
+        return 1;
     }
 }

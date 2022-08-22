@@ -4,9 +4,9 @@ namespace App\Imports;
 
 use App\Ctr_legal;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class CtrPersonImport implements ToModel
+class CtrPersonImport implements ToModel, WithChunkReading
 {
     /**
     * @param array $row
@@ -36,5 +36,10 @@ class CtrPersonImport implements ToModel
             'receiver_name' => $row[14],
             'destination_fi' => $row[15],
         ]);
+    }
+
+    public function chunkSize(): int
+    {
+        return 200;
     }
 }

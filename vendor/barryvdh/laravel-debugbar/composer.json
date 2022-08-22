@@ -10,10 +10,17 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
-        "symfony/finder": "~2.7|~3.0",
-        "maximebf/debugbar": "~1.13.0"
+        "php": ">=7.0",
+        "maximebf/debugbar": "^1.16.3",
+        "illuminate/routing": "^5.5|^6|^7",
+        "illuminate/session": "^5.5|^6|^7",
+        "illuminate/support": "^5.5|^6|^7",
+        "symfony/debug": "^3|^4|^5",
+        "symfony/finder": "^3|^4|^5"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.5|^4.0|^5.0",
+        "phpunit/phpunit": "^6.0|^7.0|^8.5|^9.0"
     },
     "autoload": {
         "psr-4": {
@@ -22,5 +29,25 @@
         "files": [
             "src/helpers.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Barryvdh\\Debugbar\\Tests\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.2-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Barryvdh\\Debugbar\\ServiceProvider"
+            ],
+            "aliases": {
+                "Debugbar": "Barryvdh\\Debugbar\\Facade"
+            }
+        }
     }
 }

@@ -7,6 +7,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Maatwebsite\Excel\Facades\Excel;
+use DB;
+use App\Imports\CtrPersonImport;
 
 class ImportCtrPerson implements ShouldQueue
 {
@@ -33,32 +35,40 @@ class ImportCtrPerson implements ShouldQueue
      */
     public function handle()
     {
-        $pathFile = 'storage/app/public/ctrperson2.xlsx';
-        Excel::filter('chunk')->load($pathFile)->chunk(200, function ($results) {
-            $results = $results->get();
-            dd($results);
-            for ($i=2; $i < count($results); $i++) { 
-                $value = $results[$i];
-                dd($value);
+
+        $dd = Excel::import(new CtrPersonImport, $this->path);
+        config([
+            'excel.import.startRow' => 2,
+            'excel.import.dates.columns' => [
+                'transaction_date',
+                'birthday'
+                ]
+            ]);
+        Excel::filter('chunk')->load($this->path)->chunk(200, function ($results) {
+            foreach ($results as $key => $value) {
                 $insert[] = [
-                    // 'idreporter' => $this->user->reporter_idreporter,
-                    'name' => $value[1],
-                    'surname' => $value[2],
-                    'nationality' => $value[3],
-                    'birthday' => $value[4],
-                    'occupation' => $value[5],
-                    'phone_number' => $value[6],
-                    'identity_card' => $value[7],
-                    'nominee' => $value[8],
-                    'owner' => $value[9],
-                    'transaction_type' => $value[10],
-                    'transaction_date' => $value[11],
-                    'transaction_amount' => $value[12],
-                    'receiver_name' => $value[13],
-                    'destination_fi' => $value[14],
-                    'currency' => $value[15],
-                  ]; 
-                  dd($insert); 
+                    // 'idctr_upload' => Ctr_upload::where(id)  //h neo dhai hai mun deung ao id sout thai khong table ctr_upload dai
+                  //  'idctr_upload' => Ctr_upload::orderBy('ctr_id', 'desc')
+                  // 'idreporter' => Auth::user()->idusr,
+                  // $idbank = Auth::user()->idusr;
+                  'idreporter' => $this->user->reporter_idreporter,
+
+                  'name' => $value->name,
+                  'surname' => $value->surname,
+                  'nationality' => $value->nationality,
+                  'birthday' => $value->birthday,
+                  'occupation' => $value['0'],
+                  'phone_number' => $value->phone_number,
+                  'identity_card' => $value->identity_card,
+                  'nominee' => $value->nominee,
+                  'owner' => $value->owner,
+                  'transaction_type' => $value->transaction_type,
+                  'transaction_date' => $value->transaction_date,
+                  'transaction_amount' => $value->transaction_amount,
+                  'receiver_name' => $value->receiver_name,
+                  'destination_fi' => $value->destination_fi,
+                  'currency' => $value->currency,
+                ];
             }
             if (!empty($insert)){  
                 DB::table('ctr_person')->insert($insert);  

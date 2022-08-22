@@ -13,4 +13,31 @@ class MyController extends Controller
     ->withTitle($title)
     ->withSubtitle($subtitle);
   }
+
+  public function index () {
+    return view('index');
+  }
+
+  public function clearCache () {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:cache');
+    return "CACHE CLEARED, VIEW CLEARED, CACHE CONFIGED.";
+  }
+
+  public function welcome () {
+    return view('welcome');
+  }
+
+  public function reset () {
+    return view('reset');
+  }
+
+  public function comment () {
+    return view('reset');
+  }
+
+  public function docviews () {
+    return view('reset');
+  }
 }

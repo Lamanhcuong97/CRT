@@ -19,7 +19,7 @@ class CreateArticle2Table extends Migration
           $table->text('subtitle');
           $table->text('body');
           $table->timestamps();
-          $table->timestamp('published_at');
+          $table->timestamp('published_at')->nullable();
         });
     }
 

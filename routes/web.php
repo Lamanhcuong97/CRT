@@ -17,10 +17,7 @@ Auth::routes();
 
 /*Adhoc rout*/
 /*Page rout*/
-Route::get('/index', function () {
-	
-    return view('index');
-});
+Route::get('/index', 'MyController@index');
 
 
 
@@ -40,11 +37,11 @@ Route::get('/index', function () {
 
 
 /*Download file AN Law*/
-Route::get('/an01/{ts}', function () {
+// Route::get('/an01/{ts}', function () {
     
-    $filepath = public_path('adhoc/AN/')."AN01.docx";
-    return Response::download($filepath);
-});
+//     $filepath = public_path('adhoc/AN/')."AN01.docx";
+//     return Response::download($filepath);
+// });
 
 /*---------------------End of Adhoc---------------------------*/
 
@@ -59,24 +56,16 @@ Route::post('/login', 'IndexController@login');
 Route::get('/logout', 'IndexController@logout');
 Route::get('/download/{name}','DownloadController@download');
 
-Route::get('/clear/all/', function(){
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    Artisan::call('config:cache');
-    return "CACHE CLEARED, VIEW CLEARED, CACHE CONFIGED.";
-  });
+Route::get('/clear/all/', 'MyController@clearCache');
 
   Route::get('/ctrviews', 'CtrviewsController@replyviews');
 //   Route::get('/admin/user', 'AdminController@admin_user');
 //   Route::post('/admin/user/add', 'AdminController@admin_user_add');
 
 Route::middleware('admin:1,2,3,4','auth')->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
-    Route::get('/reset', function () {
-        return view('reset');
-    });
+    Route::get('/', "MyController@welcome");
+    Route::get('/', "MyController@reset");
+
     Route::post('/reset/add', 'IndexController@reset');
     Route::get('hello', 'MyController@hello');
     Route::resource('articles', 'ArticlesController');
@@ -115,9 +104,7 @@ Route::middleware('admin:1,2,3,4','auth')->group(function () {
 
     //nokame
 
-    Route::get('/comment', function () {
-        return view('comment.create');
-    });
+    Route::get('/comment', "MyController@comment");
 
     Route::post('commentstore', 'CommentController@add');
 
@@ -138,9 +125,7 @@ Route::middleware('admin:1,2,3,4','auth')->group(function () {
 
 
     
-    Route::get('/docviews', function () {
-        return view('stronlines.docviews');
-    });
+    Route::get('/docviews', 'MyController@docviews');
     Route::post('docstore', 'DocController@save');
     Route::get('/docall', 'DocController@docshow');
 
