@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Ctr_upload;
 // use App\Usr;
-use Carbon;
 use App\Reporter;
 use App\Ctr_person;
 use App\Ctr_legal;
@@ -18,6 +17,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CtrPersonImport;
 use App\Exports\CtrLegalImport;
 use Maatwebsite\Excel\HeadingRowImport;
+use Carbon\Carbon;
 
 class CtrController extends Controller
 {
@@ -51,157 +51,125 @@ class CtrController extends Controller
       
       // $usrs -> reporter_idreporter;
       $user = Auth::user();
-       
-          if(Input::hasFile('ctr_person')){  
-            $pathCtrPerson = Input::file('ctr_person')->getRealPath();  
-            config([
-              'excel.import.startRow' => 2,
-              'excel.import.dates.columns' => [
-                  'transaction_date',
-                  'birthday'
-                  ]
-              ]);
-            $isErrorCtrPerson = false;
-            $headingRowImport = (new HeadingRowImport(1))->toArray(Input::file('ctr_person'));
-            $ctrPersonHeadings = $headingRowImport[0][0] ?? null;
-            if (
-              !in_array('name', $ctrPersonHeadings) ||
-              !in_array('surname', $ctrPersonHeadings) ||
-              !in_array('nationality', $ctrPersonHeadings) ||
-              !in_array('birthday', $ctrPersonHeadings) ||
-              // !in_array('occupation', $ctrPersonHeadings) ||
-              !in_array('phone_number', $ctrPersonHeadings) ||
-              !in_array('identity_card', $ctrPersonHeadings) ||
-              !in_array('nominee', $ctrPersonHeadings) ||
-              !in_array('owner', $ctrPersonHeadings) ||
-              !in_array('transaction_type', $ctrPersonHeadings) ||
-              !in_array('transaction_date', $ctrPersonHeadings) ||
-              !in_array('transaction_amount', $ctrPersonHeadings) ||
-              !in_array('receiver_name', $ctrPersonHeadings) ||
-              !in_array('destination_fi', $ctrPersonHeadings) ||
-              !in_array('currency', $ctrPersonHeadings)
-            ) {
-              $isErrorCtrPerson = true;
-            }
+      $ctr = new Ctr_upload;
+      $ctr_month = $request->ctr_month;
+      $day = date('d');
+      $today = $ctr_month . '-' . $day;
+      $ctr->ctr_month = $today;
+      $ctr->upload_date = Carbon::now();
+      if (Input::hasFile('ctr_cover')) {
+        $file_cover = $request->file('ctr_cover');
+        $gen_cover_name = "ctr_".date("d-m-Y")."_".time()."_".$file_cover->getClientOriginalName();
 
-            dd();
-          }  
-          if ($isErrorCtrPerson) {
-            return redirect()->back()->with('error', 'Lỗi file không đúng định dạng1');
-          }
+        // $file_person = $request->file('ctr_person');
+        // $gen_person_name = "ctr_".date("d-m-Y")."_".time()."_".$file_person->getClientOriginalName();
 
-          // if(Input::hasFile('ctr_person')){
-              
-          //   $file_person = $request->file('ctr_person');
-          //   $gen_person_name = "ctr_".date("d-m-Y")."_".time()."_".$file_person->getClientOriginalName();
-          //   $directory = "fileattaches/ctr_upload";
-          //   $store = $file_person->move(storage_path('app/public/'. $directory), $gen_person_name);
-          //   // $ctr->path_person = $directory.'/'.$gen_person_name;
-            
-          // }
-          Excel::import(new CtrPersonImport($user), Input::file('ctr_person'));
+        // $file_legal = $request->file('ctr_legal');
+        // $gen_legal_name = "ctr_".date("d-m-Y")."_".time()."_".$file_legal->getClientOriginalName();
 
-          if(Input::hasFile('ctr_legal')){  
-            $pathCtrLegal = Input::file('ctr_legal')->getRealPath();  
-            $headingRowImport = (new HeadingRowImport(1))->toArray(Input::file('ctr_legal'));
-            $ctrLegalheadings = $headingRowImport[0][0] ?? null;
-            $isErrorCtrLegal = false;
-            if (
-              !in_array('business_name', $ctrLegalheadings) ||
-              !in_array('license_no', $ctrLegalheadings) ||
-              !in_array('license_date', $ctrLegalheadings) ||
-              !in_array('business_type', $ctrLegalheadings) ||
-              !in_array('office_phone', $ctrLegalheadings) ||
-              !in_array('customer_name', $ctrLegalheadings) ||
-              !in_array('nationality', $ctrLegalheadings) ||
-              !in_array('occupation', $ctrLegalheadings) ||
-              !in_array('identity_card', $ctrLegalheadings) ||
-              !in_array('customer_phone', $ctrLegalheadings) ||
-              !in_array('transaction_type', $ctrLegalheadings) ||
-              !in_array('transaction_date', $ctrLegalheadings) ||
-              !in_array('transaction_amount', $ctrLegalheadings) ||
-              !in_array('receiver_name', $ctrLegalheadings) ||
-              !in_array('destination_fi', $ctrLegalheadings) ||
-              !in_array('currency', $ctrLegalheadings)
-            ) {
-              $isErrorCtrLegal = true;
-            }
-
-            if ($isErrorCtrLegal) {
-              return redirect()->back()->with('error', 'Lỗi file không đúng định dạng2');
-            }
-
-            dispatch(new \App\Jobs\ImportCtrLegal($user, $pathCtrLegal));
-        }  
-       
+        $directory = "fileattaches/ctr_upload";
       
-        if(Input::hasFile('ctr_cover')){
-            $file_cover = $request->file('ctr_cover');
-            $gen_cover_name = "ctr_".date("d-m-Y")."_".time()."_".$file_cover->getClientOriginalName();
-
-            // $file_person = $request->file('ctr_person');
-            // $gen_person_name = "ctr_".date("d-m-Y")."_".time()."_".$file_person->getClientOriginalName();
-
-            // $file_legal = $request->file('ctr_legal');
-            // $gen_legal_name = "ctr_".date("d-m-Y")."_".time()."_".$file_legal->getClientOriginalName();
-
-            $directory = "fileattaches/ctr_upload";
-          
-            $file_cover->move($directory,$gen_cover_name);
-            // $file_person->move($directory,$gen_person_name);
-            // $file_legal->move($directory,$gen_legal_name);
-            $ctr = new Ctr_upload;
-               $ctr_month = $request->ctr_month;
-               $day = date('d');
-            $today = $ctr_month . '-' . $day;
-            $ctr->ctr_month = $today;
-            $ctr->path_file = $directory.'/'.$gen_cover_name;
-            // $ctr->path_person = $directory.'/'.$gen_person_name;
-            // $ctr->path_legal = $directory.'/'.$gen_legal_name;
-            $ctr->idusr = Auth::user()->idusr;
-
-            
-             
-        if(Input::hasFile('ctr_legal')){
-
-          $file_legal = $request->file('ctr_legal');
-          $gen_legal_name = "ctr_".date("d-m-Y")."_".time()."_".$file_legal->getClientOriginalName();
-          $directory = "fileattaches/ctr_upload";
-          $file_legal->move($directory,$gen_legal_name);
-          $ctr->path_legal = $directory.'/'.$gen_legal_name;
-          
-        }
-    
-            $ctr->save();
-
-
-
-
-
-      //   $new_report = Ctr_upload::create([
-      //     'idusr' => Auth::user()->idusr,
-      //     // 'upload_date' => $request->upload_date,
-      //     // 'title' => $request->title,
-      //     'ctr_month' => $request->ctr_month,
-      //     'path_file' => $request->file('ctr_cover')->move('fileattaches/ctr_upload'),
-      // ]);
-      return redirect()->back()->with('success', 'ສົ່ງເອກະສານສຳເລັດແລ້ວ!');
+        $file_cover->move(storage_path('app/public/'. $directory),$gen_cover_name);
+        // $file_person->move($directory,$gen_person_name);
+        // $file_legal->move($directory,$gen_legal_name);
+        $ctr->path_file = storage_path('app/public/'. $directory . '/' . $gen_cover_name);
+        // $ctr->path_person = $directory.'/'.$gen_person_name;
+        // $ctr->path_legal = $directory.'/'.$gen_legal_name;
     } else {
-        
-        return redirect()->back()->with('error', 'ການສົ່ງບໍ່ສຳເລັດ!');
+      return redirect()->back()->with('error', 'ການສົ່ງບໍ່ສຳເລັດ!');
     }
-      // $file = $request->file('ctr_cover');
-      // $gen_file_name = "ctr_".date("d-m-Y")."_".time()."_".$file->getClientOriginalName();
-      // $directory = "fileattaches/ctr_upload";
-      // $file->move($directory,$gen_file_name);
-	    // $ctr = new Ctr_upload;
-      // // $ctr->title = $request->suspicious_transaction_title;
-      // $ctr->ctr_month =$request->ctr_month;
-      // $ctr->path_file = $directory.'/'.$gen_file_name;
-      // $ctr->idusr = Auth::user()->idusr;
-      // $ctr->save();
+    $ctr->idusr = Auth::user()->idusr;
+
+    $ctr->save();
+       
+      if(Input::hasFile('ctr_person')) {  
+        $pathCtrPerson = Input::file('ctr_person')->getRealPath();  
+        config([
+          'excel.import.startRow' => 2,
+          'excel.import.dates.columns' => [
+              'transaction_date',
+              'birthday'
+              ]
+          ]);
+        $isErrorCtrPerson = false;
+        $headingRowImport = (new HeadingRowImport(1))->toArray(Input::file('ctr_person'));
+        $ctrPersonHeadings = $headingRowImport[0][0] ?? null;
+        if (
+          !in_array('name', $ctrPersonHeadings) ||
+          !in_array('surname', $ctrPersonHeadings) ||
+          !in_array('nationality', $ctrPersonHeadings) ||
+          !in_array('birthday', $ctrPersonHeadings) ||
+          // !in_array('occupation', $ctrPersonHeadings) ||
+          !in_array('phone_number', $ctrPersonHeadings) ||
+          !in_array('identity_card', $ctrPersonHeadings) ||
+          !in_array('nominee', $ctrPersonHeadings) ||
+          !in_array('owner', $ctrPersonHeadings) ||
+          !in_array('transaction_type', $ctrPersonHeadings) ||
+          !in_array('transaction_date', $ctrPersonHeadings) ||
+          !in_array('transaction_amount', $ctrPersonHeadings) ||
+          !in_array('receiver_name', $ctrPersonHeadings) ||
+          !in_array('destination_fi', $ctrPersonHeadings) ||
+          !in_array('currency', $ctrPersonHeadings)
+        ) {
+          $isErrorCtrPerson = true;
+        }
+
+        if ($isErrorCtrPerson) {
+          return redirect()->back()->with('error', 'Lỗi file không đúng định dạng1');
+        }
+            
+        $file_person = $request->file('ctr_person');
+        $gen_person_name = "ctr_".date("d-m-Y")."_".time()."_".$file_person->getClientOriginalName();
+        $directory = "fileattaches/ctr_upload";
+        $store = $file_person->move(storage_path('app/public/'. $directory), $gen_person_name);
+        $pathPerson = storage_path('app/public/'. $directory . '/' . $gen_person_name);
+        $ctr->path_person = $pathPerson;
+        $ctr->save();
+        
+        $data = Excel::import(new CtrPersonImport($user, $ctr), $pathPerson);
+      }  
+
+      if(Input::hasFile('ctr_legal')) {  
+        $pathCtrLegal = Input::file('ctr_legal')->getRealPath();  
+        $headingRowImport = (new HeadingRowImport(1))->toArray(Input::file('ctr_legal'));
+        $ctrLegalheadings = $headingRowImport[0][0] ?? null;
+        $isErrorCtrLegal = false;
+        if (
+          !in_array('business_name', $ctrLegalheadings) ||
+          !in_array('license_no', $ctrLegalheadings) ||
+          !in_array('license_date', $ctrLegalheadings) ||
+          !in_array('business_type', $ctrLegalheadings) ||
+          !in_array('office_phone', $ctrLegalheadings) ||
+          !in_array('customer_name', $ctrLegalheadings) ||
+          !in_array('nationality', $ctrLegalheadings) ||
+          !in_array('occupation', $ctrLegalheadings) ||
+          !in_array('identity_card', $ctrLegalheadings) ||
+          !in_array('customer_phone', $ctrLegalheadings) ||
+          !in_array('transaction_type', $ctrLegalheadings) ||
+          !in_array('transaction_date', $ctrLegalheadings) ||
+          !in_array('transaction_amount', $ctrLegalheadings) ||
+          !in_array('receiver_name', $ctrLegalheadings) ||
+          !in_array('destination_fi', $ctrLegalheadings) ||
+          !in_array('currency', $ctrLegalheadings)
+        ) {
+          $isErrorCtrLegal = true;
+        }
+
+        if ($isErrorCtrLegal) {
+          return redirect()->back()->with('error', 'Lỗi file không đúng định dạng2');
+        }
+
+        $file_legal = $request->file('ctr_legal');
+        $gen_legal_name = "ctr_".date("d-m-Y")."_".time()."_".$file_legal->getClientOriginalName();
+        $directory = "fileattaches/ctr_upload";
+        $file_legal->move(storage_path('app/public/'. $directory),$gen_legal_name);
+        $pathLegal = storage_path('app/public/'. $directory . '/' . $gen_legal_name);
+        $ctr->path_legal = $pathLegal;
+        $ctr->save();
+          
+        Excel::queueImport(new CtrPersonImport($user, $ctr), $pathLegal);
+      }  
       return redirect()->back()->with('success', 'ສົ່ງເອກະສານສຳເລັດແລ້ວ!');
-      // return redirect('ctrviews');
   }
 
     // search form of person

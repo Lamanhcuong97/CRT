@@ -10,13 +10,16 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use \PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
 
-class CtrPersonImport implements ToCollection, WithChunkReading, WithHeadingRow, ShouldQueue
+class CtrPersonImport implements ToCollection, WithChunkReading, WithHeadingRow, ShouldQueue, WithBatchInserts
 {
     private $user;
-    public function __construct($user)
+    private $ctr;
+    public function __construct($user, $ctr)
     {
         $this->user = $user;
+        $this->ctr = $ctr;
     }
     /**
     * @param array $row
@@ -25,9 +28,8 @@ class CtrPersonImport implements ToCollection, WithChunkReading, WithHeadingRow,
     */
     public function collection(Collection $rows)
     {
-
         foreach ($rows as $row) {
-            return new Ctr_person([
+            Ctr_person::create([
                 'idreporter' => $this->user->reporter_idreporter,
                 'name' => $row['name'],
                 'surname' => $row['surname'],
@@ -44,6 +46,7 @@ class CtrPersonImport implements ToCollection, WithChunkReading, WithHeadingRow,
                 'receiver_name' => $row['receiver_name'],
                 'destination_fi' => $row['destination_fi'],
                 'currency' => $row['currency'],
+                'ctr_id' => $this->ctr->id
             ]);
         }
     }
@@ -56,5 +59,10 @@ class CtrPersonImport implements ToCollection, WithChunkReading, WithHeadingRow,
     public function headingRow(): int
     {
         return 1;
+    }
+
+    public function batchSize(): int
+    {
+        return 200;
     }
 }
