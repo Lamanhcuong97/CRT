@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CtrPersonImport;
-use App\Exports\CtrLegalImport;
+use App\Imports\CtrLegalImport;
 use Maatwebsite\Excel\HeadingRowImport;
 use Carbon\Carbon;
 
@@ -99,7 +99,7 @@ class CtrController extends Controller
           !in_array('surname', $ctrPersonHeadings) ||
           !in_array('nationality', $ctrPersonHeadings) ||
           !in_array('birthday', $ctrPersonHeadings) ||
-          // !in_array('occupation', $ctrPersonHeadings) ||
+          !in_array('occupation', $ctrPersonHeadings) ||
           !in_array('phone_number', $ctrPersonHeadings) ||
           !in_array('identity_card', $ctrPersonHeadings) ||
           !in_array('nominee', $ctrPersonHeadings) ||
@@ -139,12 +139,12 @@ class CtrController extends Controller
           !in_array('license_no', $ctrLegalheadings) ||
           !in_array('license_date', $ctrLegalheadings) ||
           !in_array('business_type', $ctrLegalheadings) ||
-          !in_array('office_phone', $ctrLegalheadings) ||
+          !in_array('office_phone_text', $ctrLegalheadings) ||
           !in_array('customer_name', $ctrLegalheadings) ||
           !in_array('nationality', $ctrLegalheadings) ||
           !in_array('occupation', $ctrLegalheadings) ||
           !in_array('identity_card', $ctrLegalheadings) ||
-          !in_array('customer_phone', $ctrLegalheadings) ||
+          !in_array('customer_phone_text', $ctrLegalheadings) ||
           !in_array('transaction_type', $ctrLegalheadings) ||
           !in_array('transaction_date', $ctrLegalheadings) ||
           !in_array('transaction_amount', $ctrLegalheadings) ||
@@ -166,8 +166,8 @@ class CtrController extends Controller
         $pathLegal = storage_path('app/public/'. $directory . '/' . $gen_legal_name);
         $ctr->path_legal = $pathLegal;
         $ctr->save();
-          
-        Excel::queueImport(new CtrPersonImport($user, $ctr), $pathLegal);
+
+        Excel::import(new CtrLegalImport($user, $ctr), $pathLegal);
       }  
       return redirect()->back()->with('success', 'ສົ່ງເອກະສານສຳເລັດແລ້ວ!');
   }

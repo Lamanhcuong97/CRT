@@ -11,7 +11,7 @@ use \PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 
-class CtrPersonImport implements ToCollection, WithChunkReading, WithHeadingRow, ShouldQueue, WithBatchInserts
+class CtrLegalImport implements ToCollection, WithChunkReading, WithHeadingRow, ShouldQueue, WithBatchInserts
 {
 
     private $user;
@@ -25,25 +25,24 @@ class CtrPersonImport implements ToCollection, WithChunkReading, WithHeadingRow,
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-            dd($row);
             Ctr_legal::create([
                 'idreporter' => $this->user->reporter_idreporter,
-                'business_name' => $row[0],
-                'license_no' => $row[1],
-                'license_date' => $row[2],
-                'business_type' => $row[3],
-                'office_phone' => $row[4],
-                'customer_name' => $row[5],
-                'nationality' => $row[6],
-                'occupation' => $row[7],
-                'identity_card' => $row[8],
-                'customer_phone' => $row[9],
-                'transaction_type' => $row[10],
-                'transaction_date' => $row[11],
-                'transaction_amount' => $row[12],
-                'currency' => $row[13],
-                'receiver_name' => $row[14],
-                'destination_fi' => $row[15],
+                'business_name' => $row['business_name'],
+                'license_no' => $row['license_no'],
+                'license_date' => Date::excelToDateTimeObject($row['license_date']),
+                'business_type' => $row['business_type'],
+                'office_phone' => $row['office_phone_text'],
+                'customer_name' => $row['customer_name'],
+                'nationality' => $row['nationality'],
+                'occupation' => $row['occupation'],
+                'identity_card' => $row['identity_card'],
+                'customer_phone' => $row['customer_phone_text'],
+                'transaction_type' => $row['transaction_type'],
+                'transaction_date' => Date::excelToDateTimeObject($row['transaction_date']),
+                'transaction_amount' => $row['transaction_amount'],
+                'currency' => $row['currency'],
+                'receiver_name' => $row['receiver_name'],
+                'destination_fi' => $row['destination_fi'],
                 'ctr_id' => $this->ctr->id,
             ]);
         }

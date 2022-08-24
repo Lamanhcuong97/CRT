@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class MyController extends Controller
 {
@@ -39,5 +39,10 @@ class MyController extends Controller
 
   public function docviews () {
     return view('reset');
+  }
+
+  public function downloadFileAN () {
+    $filepath = public_path('adhoc/AN/')."AN01.docx";
+    return response()->download($filepath);
   }
 }

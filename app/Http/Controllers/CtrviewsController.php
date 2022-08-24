@@ -31,8 +31,7 @@ class CtrviewsController extends Controller
       $idreceivers[$receiver->idusr] = $receiver->usr_name;
     }
     if(Auth::user()->role_idrole == 2){
-      // $replies = Strreply::join('usr', 'usr.idusr', '=', 'str_replys.user_reply')->where('str_reply_to', '=', Auth::id())->get();
-      $replies = [];
+      $replies = Strreply::join('usr', 'usr.idusr', '=', 'str_replys.user_reply')->where('str_reply_to', '=', Auth::id())->get();
       return view('stronlines.ctrviews', compact('replies', 'idreceivers'));
 	  
     }else{
