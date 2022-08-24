@@ -43,7 +43,7 @@ class CtrLegalImport implements ToCollection, WithChunkReading, WithHeadingRow, 
                 'currency' => $row['currency'],
                 'receiver_name' => $row['receiver_name'],
                 'destination_fi' => $row['destination_fi'],
-                'ctr_id' => $this->ctr->id,
+                'ctr_id' => $this->ctr->ctr_id,
             ]);
         }
     }

@@ -12,6 +12,30 @@
       <h2 class="text-lo text-nowrap" style="color: #ebf2f6; margin-top: -6px;"><strong>ການເກັບກຳສະຖິຕິລາຍງານຕໍ່ເຈົ້າໜ້າທີ່ຕ່ຳຫຼວດ</strong> </h2>
   </blockquote>
 </div> -->
+
+@if(Session::has('success'))
+		<div class="alert alert-success text-center" style="font-size: 30px;">
+			{!! Session::get('success') !!}
+		</div>
+	@endif
+
+
+	@if(Session::has('error'))
+		<div class="alert alert-danger  text-center"  style="font-size: 30px;">
+			{!! Session::get('error') !!}
+		</div>
+	@endif
+	<div id="accordion" class="accordion-style1 panel-group text-lo">
+<!-- Boy added 21 Feb 2022 Validation error  -->
+@if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+          
+              <h2 class="text-center" style="font-family:phetsarath OT">{{ 'ບໍ່ສຳເລັດ!! ໄຟລທີ່ທ່ານອັບໂຫລດບໍ່ຖືກກັບແບບ(Format) ທີ່ ສຕຟງ ກຳນົດໄວ້!! ກະລຸນາກວດຄືນແລ້ວສົ່ງອີກຄັ້ງ' }}</h2>
+          
+      </ul>
+  </div>
+@endif 
 <div class="row">
   <div class="col-md-offset-2 col-md-8">
   <form  class="form-horizontal" method="POST" role="form" enctype="multipart/form-data" accept-charset="UTF-8">
@@ -90,6 +114,7 @@
               <th>ເອກະສານຫນ້າປົກ</th>
               <th>ເອກະສານບຸກຄົນ</th>
               <th>ເອກະສານນິຕິບຸກຄົນ</th>
+              <th>Action</th>
 						</tr>
 					</thead>
 
@@ -108,10 +133,16 @@
                 <td>@if($ctrshow->ctr_month !== null){{ date('m-Y', strtotime($ctrshow->ctr_month)) }}  @else {{ ' ' }} @endif </td>
                 <td>@if($ctrshow->title !== null) {{ $ctrshow->title }} @else {{ 'ລາຍງານທຸລະກຳເງິນສົດທີ່ມີມູນຄ່າເກີນກຳນົດ ' }} @endif</td>
                     <td>{{ $ctrshow->reporter_name }}</td>
-                    <td><a href="{{ $ctrshow->path_file }}" class="badge badge-primary" >ດາວໂຫຼດ</a></td>
-                    <td>@if($ctrshow->path_person !== null) <a href='{{ $ctrshow->path_person }}' class="badge badge-primary">ດາວໂຫຼດ</a>  @else {{ 'ລວມຢູ່ໃນໄຟລຫນ້າປົກ' }} @endif</td>
-                    <td>@if($ctrshow->path_legal !== null) <a href='{{ $ctrshow->path_legal }}' class="badge badge-primary">ດາວໂຫຼດ</a> @else {{ 'ລວມຢູ່ໃນໄຟລຫນ້າປົກ' }} @endif</td>
-        						
+                    <td><a href="{{ asset("storage/" . $ctrshow->path_file) }}" class="badge badge-primary" >ດາວໂຫຼດ</a></td>
+                    <td>@if($ctrshow->path_person !== null) <a href='{{ asset("storage/" . $ctrshow->path_person) }}' class="badge badge-primary">ດາວໂຫຼດ</a>  @else {{ 'ລວມຢູ່ໃນໄຟລຫນ້າປົກ' }} @endif</td>
+                    <td>@if($ctrshow->path_legal !== null) <a href='{{ asset("storage/" . $ctrshow->path_legal) }}' class="badge badge-primary">ດາວໂຫຼດ</a> @else {{ 'ລວມຢູ່ໃນໄຟລຫນ້າປົກ' }} @endif</td>
+        						<td>
+                      <form method="POST" action="{{ route('ctr.delete', $ctrshow->ctr_id) }}">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <input type="submit" class="btn btn-danger delete-user btn-sm" value="Delete">
+                      </form>
+                    </td>
                 @php 
                 $i++;
                 @endphp    

@@ -46,7 +46,7 @@ class CtrPersonImport implements ToCollection, WithChunkReading, WithHeadingRow,
                 'receiver_name' => $row['receiver_name'],
                 'destination_fi' => $row['destination_fi'],
                 'currency' => $row['currency'],
-                'ctr_id' => $this->ctr->id
+                'ctr_id' => $this->ctr->ctr_id
             ]);
         }
     }

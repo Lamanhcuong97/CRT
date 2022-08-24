@@ -110,14 +110,12 @@ Route::middleware('admin:1,2,3,4','auth')->group(function () {
     Route::get('/viewcomment', 'CommentController@commentshow');
     // CTR  all inbox Adminpage
     Route::get('/ctrall', 'CtrController@ctrshow');
+    Route::delete('/ctr-upload-delete/{ctrUploadId}', 'CtrController@ctrDelete')->name('ctr.delete');
 
     // CTR user all sent UserPage 2
     Route::get('/ctrall_rp', 'CtrController@ctrshow_rp');
 
 
-
-
-    
     Route::get('/docviews', 'MyController@docviews');
     Route::post('docstore', 'DocController@save');
     Route::get('/docall', 'DocController@docshow');

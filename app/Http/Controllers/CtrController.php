@@ -51,36 +51,6 @@ class CtrController extends Controller
       
       // $usrs -> reporter_idreporter;
       $user = Auth::user();
-      $ctr = new Ctr_upload;
-      $ctr_month = $request->ctr_month;
-      $day = date('d');
-      $today = $ctr_month . '-' . $day;
-      $ctr->ctr_month = $today;
-      $ctr->upload_date = Carbon::now();
-      if (Input::hasFile('ctr_cover')) {
-        $file_cover = $request->file('ctr_cover');
-        $gen_cover_name = "ctr_".date("d-m-Y")."_".time()."_".$file_cover->getClientOriginalName();
-
-        // $file_person = $request->file('ctr_person');
-        // $gen_person_name = "ctr_".date("d-m-Y")."_".time()."_".$file_person->getClientOriginalName();
-
-        // $file_legal = $request->file('ctr_legal');
-        // $gen_legal_name = "ctr_".date("d-m-Y")."_".time()."_".$file_legal->getClientOriginalName();
-
-        $directory = "fileattaches/ctr_upload";
-      
-        $file_cover->move(storage_path('app/public/'. $directory),$gen_cover_name);
-        // $file_person->move($directory,$gen_person_name);
-        // $file_legal->move($directory,$gen_legal_name);
-        $ctr->path_file = storage_path('app/public/'. $directory . '/' . $gen_cover_name);
-        // $ctr->path_person = $directory.'/'.$gen_person_name;
-        // $ctr->path_legal = $directory.'/'.$gen_legal_name;
-    } else {
-      return redirect()->back()->with('error', 'ການສົ່ງບໍ່ສຳເລັດ!');
-    }
-    $ctr->idusr = Auth::user()->idusr;
-
-    $ctr->save();
        
       if(Input::hasFile('ctr_person')) {  
         $pathCtrPerson = Input::file('ctr_person')->getRealPath();  
@@ -117,16 +87,6 @@ class CtrController extends Controller
         if ($isErrorCtrPerson) {
           return redirect()->back()->with('error', 'Lỗi file không đúng định dạng1');
         }
-            
-        $file_person = $request->file('ctr_person');
-        $gen_person_name = "ctr_".date("d-m-Y")."_".time()."_".$file_person->getClientOriginalName();
-        $directory = "fileattaches/ctr_upload";
-        $store = $file_person->move(storage_path('app/public/'. $directory), $gen_person_name);
-        $pathPerson = storage_path('app/public/'. $directory . '/' . $gen_person_name);
-        $ctr->path_person = $pathPerson;
-        $ctr->save();
-        
-        $data = Excel::import(new CtrPersonImport($user, $ctr), $pathPerson);
       }  
 
       if(Input::hasFile('ctr_legal')) {  
@@ -158,18 +118,58 @@ class CtrController extends Controller
         if ($isErrorCtrLegal) {
           return redirect()->back()->with('error', 'Lỗi file không đúng định dạng2');
         }
+      }
 
-        $file_legal = $request->file('ctr_legal');
-        $gen_legal_name = "ctr_".date("d-m-Y")."_".time()."_".$file_legal->getClientOriginalName();
+      $ctr = new Ctr_upload;
+      $ctr_month = $request->ctr_month;
+      $day = date('d');
+      $today = $ctr_month . '-' . $day;
+      $ctr->ctr_month = $today;
+      $ctr->upload_date = Carbon::now();
+      if (Input::hasFile('ctr_cover')) {
+        $file_cover = $request->file('ctr_cover');
+        $gen_cover_name = "ctr_".date("d-m-Y")."_".time()."_".$file_cover->getClientOriginalName();
+
+        // $file_person = $request->file('ctr_person');
+        // $gen_person_name = "ctr_".date("d-m-Y")."_".time()."_".$file_person->getClientOriginalName();
+
+        // $file_legal = $request->file('ctr_legal');
+        // $gen_legal_name = "ctr_".date("d-m-Y")."_".time()."_".$file_legal->getClientOriginalName();
+
         $directory = "fileattaches/ctr_upload";
-        $file_legal->move(storage_path('app/public/'. $directory),$gen_legal_name);
-        $pathLegal = storage_path('app/public/'. $directory . '/' . $gen_legal_name);
-        $ctr->path_legal = $pathLegal;
-        $ctr->save();
+      
+        $file_cover->move(storage_path('app/public/'. $directory),$gen_cover_name);
+        // $file_person->move($directory,$gen_person_name);
+        // $file_legal->move($directory,$gen_legal_name);
+        $ctr->path_file = $directory . '/' . $gen_cover_name;
+        // $ctr->path_person = $directory.'/'.$gen_person_name;
+        // $ctr->path_legal = $directory.'/'.$gen_legal_name;
+    } else {
+      return redirect()->back()->with('error', 'ການສົ່ງບໍ່ສຳເລັດ!');
+    }
+    $ctr->idusr = Auth::user()->idusr;
 
-        Excel::import(new CtrLegalImport($user, $ctr), $pathLegal);
-      }  
-      return redirect()->back()->with('success', 'ສົ່ງເອກະສານສຳເລັດແລ້ວ!');
+    $ctr->save();
+    // Import Ctr Person
+    $file_person = $request->file('ctr_person');
+    $gen_person_name = "ctr_".date("d-m-Y")."_".time()."_".$file_person->getClientOriginalName();
+    $directory = "fileattaches/ctr_upload";
+    $store = $file_person->move(storage_path('app/public/'. $directory), $gen_person_name);
+    $pathPerson = storage_path('app/public/'. $directory . '/' . $gen_person_name);
+    $ctr->path_person = $directory . '/' . $gen_person_name;
+    $ctr->save();
+    // $data = Excel::import(new CtrPersonImport($user, $ctr), $pathPerson);
+
+    // Import Ctr Legal
+    $file_legal = $request->file('ctr_legal');
+    $gen_legal_name = "ctr_".date("d-m-Y")."_".time()."_".$file_legal->getClientOriginalName();
+    $directory = "fileattaches/ctr_upload";
+    $file_legal->move(storage_path('app/public/'. $directory),$gen_legal_name);
+    $pathLegal = storage_path('app/public/'. $directory . '/' . $gen_legal_name);
+    $ctr->path_legal = $directory  . '/' . $gen_legal_name;
+    $ctr->save();
+    Excel::import(new CtrLegalImport($user, $ctr), $pathLegal);
+    return redirect()->back()->with('success', 'ສົ່ງເອກະສານສຳເລັດແລ້ວ!');
   }
 
     // search form of person
@@ -542,7 +542,6 @@ if(isset($request->reporter)){
         ->select('ctr_upload.*')
         ->where('idusr', Auth::user()->idusr)
         ->orderby('ctr_upload.ctr_id', 'desc')->get();
-        
         if (Auth::user()->role_idrole == '2'){
           return view('stronlines.ctrall_rp' , compact('ctrshow_rp', 'ssdate', 'sedate'));
         }
@@ -551,5 +550,26 @@ if(isset($request->reporter)){
           return redirect('logout');
         }
         
+      }
+
+      public function ctrDelete (Request $request, $ctrUploadId) {
+        $ctr = Ctr_upload::where('ctr_id', $ctrUploadId)->first();
+        if (!$ctr) {
+          return redirect()->back()->with('error', 'Ctr không tồn tại!');
+        }
+
+        try {
+          DB::beginTransaction();
+          Ctr_person::where('ctr_id', $ctrUploadId)->delete();
+          Ctr_legal::where('ctr_id', $ctrUploadId)->delete();
+          $ctr->delete();
+          DB::commit();
+        } catch (\Exception $e) {
+          dd($e);
+          DB::rollBack();
+          return redirect()->back()->with('error', 'Xóa file không thành công');
+        }
+
+        return redirect()->back()->with('success', 'Xóa file thành công!');
       }
 }

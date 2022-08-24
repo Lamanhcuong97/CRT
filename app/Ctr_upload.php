@@ -14,9 +14,4 @@ class Ctr_upload extends Model
     // protected $fillable = ['ctr_id','path_file','upload_date','idusr','title'];
     // protected $dateFormat = 'Y-m';
     protected $dates = ['ctr_month'];
-    
-  
-   
-  
-    
 }
